@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<div id="container"></div>
-<script src="d3.v7.js"></script>
-<script type="module">
-
-// Declare the chart dimensions and margins.
+import * as d3 from "d3";
 const width = 640;
 const height = 400;
 const marginTop = 20;
@@ -38,5 +33,3 @@ svg.append("g")
 
 // Append the SVG element.
 container.append(svg.node());
-
-</script>
