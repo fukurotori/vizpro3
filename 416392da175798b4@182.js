@@ -307,7 +307,7 @@ export default function define(runtime, observer) {
   const main = runtime.module();
   function toString() { return this.url; }
   const fileAttachments = new Map([
-    ["states-albers-10m.json", {url: new URL("http://code.highcharts.com/mapdata/custom/south-america.topo.json", import.meta.url), mimeType: "application/json", toString}]
+    ["states-albers-10m.json", {url: new URL("https://code.highcharts.com/mapdata/custom/south-america.topo.json", import.meta.url), mimeType: "application/json", toString}]
   ]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer("chart")).define("chart", ["d3","topojson","us"], _chart);

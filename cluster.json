@@ -1,0 +1,344 @@
+{
+    "name": "country",
+    "children": [
+        {
+            "name": "Argentina",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Dictatorship"
+                        },
+                        {
+                            "name": "coup"
+                        },
+                        {
+                            "name": "Operation Condor"
+                        },
+                        {
+                            "name": "international armed conflict"
+                        },
+                        {
+                            "name": "truth commission"
+                        },
+                        {
+                            "name": "state museum"
+                        },
+                        {
+                            "name": "memorial sites."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Uruguay",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Dictatorship"
+                        },
+                        {
+                            "name": "coup"
+                        },
+                        {
+                            "name": "Operation Condor"
+                        },
+                        {
+                            "name": "amnesty law"
+                        },
+                        {
+                            "name": "reparation law"
+                        },
+                        {
+                            "name": "truth commission"
+                        },
+                        {
+                            "name": "state museum"
+                        },
+                        {
+                            "name": "memorial sites."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Brazil",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Dictatorship"
+                        },
+                        {
+                            "name": "coup"
+                        },
+                        {
+                            "name": "Operation Condor"
+                        },
+                        {
+                            "name": "amnesty law"
+                        },
+                        {
+                            "name": "reparation law"
+                        },
+                        {
+                            "name": "truth commission"
+                        },
+                        {
+                            "name": "state museum"
+                        },
+                        {
+                            "name": "memorial sites."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Panama",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Dictatorship"
+                        },
+                        {
+                            "name": "coup"
+                        },
+                        {
+                            "name": "Operation Condor"
+                        },
+                        {
+                            "name": "international armed conflict"
+                        },
+                        {
+                            "name": "truth commission."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Ecuador",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Coup"
+                        },
+                        {
+                            "name": "reparation law"
+                        },
+                        {
+                            "name": "indigenous peoples"
+                        },
+                        {
+                            "name": "truth commission"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Chile",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Dictatorship"
+                        },
+                        {
+                            "name": "coup"
+                        },
+                        {
+                            "name": "Operation Condor"
+                        },
+                        {
+                            "name": "reparation law"
+                        },
+                        {
+                            "name": "truth commission"
+                        },
+                        {
+                            "name": "state museum"
+                        },
+                        {
+                            "name": "memorial sites."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Venezuela",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Coup"
+                        },
+                        {
+                            "name": "armed forces"
+                        },
+                        {
+                            "name": "authoritarian government"
+                        },
+                        {
+                            "name": "economic crisis"
+                        },
+                        {
+                            "name": "migration."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Peru",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Internal armed conflict"
+                        },
+                        {
+                            "name": "indigenous peoples"
+                        },
+                        {
+                            "name": "truth commission"
+                        },
+                        {
+                            "name": "reparations law"
+                        },
+                        {
+                            "name": "state museum"
+                        },
+                        {
+                            "name": "memorial sites."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Colombia",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Internal armed conflict"
+                        },
+                        {
+                            "name": "indigenous peoples"
+                        },
+                        {
+                            "name": "truth commission"
+                        },
+                        {
+                            "name": "reparations law"
+                        },
+                        {
+                            "name": "memorial sites"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "El Salvador",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Internal armed conflict"
+                        },
+                        {
+                            "name": "coup"
+                        },
+                        {
+                            "name": "truth commission"
+                        },
+                        {
+                            "name": "indigenous peoples"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Paraguay",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Dictatorship"
+                        },
+                        {
+                            "name": "coup"
+                        },
+                        {
+                            "name": "Operation Condor"
+                        },
+                        {
+                            "name": "indigenous peoples"
+                        },
+                        {
+                            "name": "reparations law"
+                        },
+                        {
+                            "name": "truth commission"
+                        },
+                        {
+                            "name": "state museum"
+                        },
+                        {
+                            "name": "memorial sites."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Bolivia",
+            "children": [
+                {
+                    "name": "category",
+                    "children": [
+                        {
+                            "name": "Dictatorship"
+                        },
+                        {
+                            "name": "coup"
+                        },
+                        {
+                            "name": "Operation Condor"
+                        },
+                        {
+                            "name": "reparation law"
+                        },
+                        {
+                            "name": "truth commission"
+                        },
+                        {
+                            "name": "indigenous peoples."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
