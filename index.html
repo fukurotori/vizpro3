@@ -1,15 +1,402 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>U.S. 2020 Presidential Election Results SpikeMaps</title>
-<link rel="stylesheet" type="text/css" href="./inspector.css">
-<body>
-<script src="./ade3bbdf1d789603@119.js"></script>
-<script type="module">
+<script>
 
-import define from "./index.js";
-import {Runtime, Library, Inspector} from "./runtime.js";
+  function showCluster() {
+    var x = document.getElementById("cluster-div");
+    console.log("hello", x);
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      hide_map();
+      hide_bar();
+    }
+    // else {
+    //   x.style.display = "none";
+    //   document.getElementById("zoommap").style.display = "none";
+    // }
+  }
+  function hide_map() {
+    var x = document.getElementById("zoommap");
+    x.style.display = "none";
+    $("#zoom").attr("display", "none");
+  }
+  function hide_bar() {
+    var x = document.getElementById("my_dataviz");
+    x.style.display = "none";
+  }
+  function show_bar() {
+    var x = document.getElementById("my_dataviz");
+    x.style.display = "block";
+    hide_clus();
+    hide_map();
+  }
 
-const runtime = new Runtime();
-const main = runtime.module(define, Inspector.into(document.body));
 
+
+  function hide_clus() {
+    var x = document.getElementById("cluster-div");
+    x.style.display = "none";
+
+  }
+  function showZoom() {
+
+    var x = document.getElementById("zoommap");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      $("#zoom").attr("display", "block");
+      hide_clus();
+      hide_bar();
+    }
+    // else {
+    //   x.style.display = "none";
+    //   $("#zoom"). attr("display", "none"); 
+
+    // }
+  }
 </script>
+<style>
+  #actors_row {
+
+    height: 100px;
+    float: left;
+    width: 100px;
+  }
+
+  #actors_row:after {
+    content: "";
+
+    position: absolute;
+    width: 5px;
+    height: 150px;
+    top: 10px;
+    left: 50%;
+    display: block;
+  }
+
+  #bottom_row {
+
+    height: 100px;
+    width: 214px;
+    float: right;
+  }
+
+  .navbar {
+    float: left;
+  }
+
+  .navbar-element {
+    display: block;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+  }
+
+  button:hover {
+    background-color: #111;
+  }
+
+  #cluster-tree {
+    display: block;
+  }
+
+  #zoommap {
+    display: none;
+  }
+</style>
+<title>Zoom to bounding box</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<head>
+  <div>
+    <ul style="list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;">
+      <li class="navbar"><button class="navbar-element" onclick="show_bar()">Bar Chart</button></li>
+      <li class="navbar"><button class="navbar-element" onclick="showCluster()">Cluster tree</button></li>
+      <li class="navbar"><button class="navbar-element" onclick="showZoom()">Zoom Map</button></li>
+    </ul>
+  </div>
+
+</head>
+<div id="zoommap" style="display: none;">
+  <div class="myDiv" id="show_box" style="
+    position: absolute;
+    top: 78px;
+    right: 247px;
+    width: 381px;
+    height: 655px;
+    border: 1px solid black;
+    .based-on-text{
+   display: inline-block;
+ }">
+    <div id="top_row"></div>
+
+    <div>
+      <hr>
+    </div>
+    <div id="scatterplot"></div>
+    <div style="
+    margin-top: 20px;
+">
+      <hr>
+      <div id="actors_row"></div>
+      <div id="bottom_row"></div>
+
+
+
+    </div>
+  </div>
+  <div id="event_detail" style="
+    margin-top: 377px;
+    position: absolute;
+    width: 794px;
+    height: 349px;
+    border: 1px solid black;
+"></div>
+</div>
+<link rel="stylesheet" type="text/css" href="./inspector.css">
+
+<body>
+  <div id="cluster-div" style="display: none;">
+    <svg width="800" height="600" id="cluster-tree"></svg>
+  </div>
+  <div id="my_dataviz" style="display: block;"></div>
+  <script type="module">
+
+    import define from "./index.js";
+    import { Runtime, Library, Inspector } from "./runtime.js";
+
+    const runtime = new Runtime();
+    const main = runtime.module(define, Inspector.into(document.body));
+
+  </script>
+
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script>
+    d3.json('./cluster.json').then(function (data) {
+
+      const width = 928;
+      const marginTop = 10;
+      const marginRight = 10;
+      const marginBottom = 10;
+      const marginLeft = 40;
+      const root = d3.hierarchy(data);
+      const dx = 10;
+      const dy = (width - marginRight - marginLeft) / (1 + root.height);
+      const tree = d3.tree().nodeSize([dx, dy]);
+      const diagonal = d3.linkHorizontal().x(d => d.y).y(d => d.x);
+
+      const svg = d3.select("#cluster-tree")
+        .attr("width", width)
+        .attr("height", dx)
+        .attr("viewBox", [-marginLeft, -marginTop, width, dx])
+        .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif; user-select: none;");
+
+      const gLink = svg.append("g")
+        .attr("fill", "none")
+        .attr("stroke", "red")
+        .attr("stroke-opacity", 0.4)
+        .attr("stroke-width", 3);
+
+      const gNode = svg.append("g")
+        .attr("cursor", "pointer")
+        .attr("pointer-events", "all");
+
+      function update(event, source) {
+        const duration = 500;
+        const nodes = root.descendants().reverse();
+        const links = root.links();
+
+        tree(root);
+
+        let left = root;
+        let right = root;
+        root.eachBefore(node => {
+          if (node.x < left.x) left = node;
+          if (node.x > right.x) right = node;
+        });
+
+        const height = right.x - left.x + marginTop + marginBottom;
+
+        const transition = svg.transition()
+          .duration(duration)
+          .attr("height", height)
+          .attr("viewBox", [-marginLeft, left.x - marginTop, width, height])
+          .tween("resize", window.ResizeObserver ? null : () => () => svg.dispatch("toggle"));
+
+        const node = gNode.selectAll("g")
+          .data(nodes, d => d.id);
+
+        const nodeEnter = node.enter().append("g")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .attr("fill-opacity", 0)
+          .attr("stroke-opacity", 0)
+          .on("click", (event, d) => {
+            d.children = d.children ? null : d._children;
+            update(event, d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", 2.5)
+          .attr("fill", d => d._children ? "#555" : "#999")
+          .attr("stroke-width", 10);
+
+        nodeEnter.append("text")
+          .attr("dy", "0.31em")
+          .attr("x", d => d._children ? -6 : 6)
+          .attr("text-anchor", d => d._children ? "end" : "start")
+          .text(d => d.data.name)
+          .clone(true).lower()
+          .attr("stroke-linejoin", "round")
+          .attr("stroke-width", 3)
+          .attr("stroke", "white");
+
+        const nodeUpdate = node.merge(nodeEnter).transition(transition)
+          .attr("transform", d => `translate(${d.y},${d.x})`)
+          .attr("fill-opacity", 1)
+          .attr("stroke-opacity", 1);
+
+        const nodeExit = node.exit().transition(transition).remove()
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .attr("fill-opacity", 0)
+          .attr("stroke-opacity", 0);
+
+        const link = gLink.selectAll("path")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().append("path")
+          .attr("d", d => {
+            const o = { x: source.x0, y: source.y0 };
+            return diagonal({ source: o, target: o });
+          });
+
+        link.merge(linkEnter).transition(transition)
+          .attr("d", diagonal);
+
+        link.exit().transition(transition).remove()
+          .attr("d", d => {
+            const o = { x: source.x, y: source.y };
+            return diagonal({ source: o, target: o });
+          });
+
+        root.eachBefore(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      root.x0 = dy / 2;
+      root.y0 = 0;
+      root.descendants().forEach((d, i) => {
+        d.id = i;
+        d._children = d.children;
+        if (d.depth && d.data.name.length !== 7) d.children = null;
+      });
+
+      update(null, root);
+
+      return svg.node();
+    });
+  </script>
+
+
+
+  <script>
+
+
+
+
+    var data = [
+
+    ]
+
+    // set the dimensions and margins of the graph
+    var margin = { top: 10, right: 30, bottom: 90, left: 40 },
+      width = 460 - margin.left - margin.right,
+      height = 450 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+    function draw_garph(data) {
+      // X axis
+      var x = d3.scaleBand()
+        .range([0, width])
+        .domain(data.map(function (d) { return d.Country; }))
+        .padding(0.2);
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x))
+        .selectAll("text")
+        .attr("transform", "translate(-10,0)rotate(-45)")
+        .style("text-anchor", "end");
+
+      // Add Y axis
+      var y = d3.scaleLinear()
+        .domain([0, 70])
+        .range([height, 0]);
+      svg.append("g")
+        .call(d3.axisLeft(y));
+
+      // Bars
+      svg.selectAll("mybar")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", function (d) { return x(d.Country); })
+        .attr("width", x.bandwidth())
+        .attr("fill", "#69b3a2")
+        // no bar at the beginning thus:
+        .attr("height", function (d) { return height - y(0); }) // always equal to 0
+        .attr("y", function (d) { return y(0); })
+      svg.append("text")
+        .attr("class", "y-axis-label")
+        .attr("text-anchor", "middle")
+        .attr("y", -30)
+        .attr("x", -150)
+        .attr("transform", "rotate(-90)")
+        .text("Years of struggle");
+
+      // Animation
+      svg.selectAll("rect")
+        .transition()
+        .duration(800)
+        .attr("y", function (d) { return y(d.Value); })
+        .attr("height", function (d) { return height - y(d.Value); })
+        .delay(function (d, i) { console.log(i); return (i * 100) })
+
+    }
+
+
+
+    // Parse the Dat
+
+    $(document).ready($.getJSON('./input_json.json', function (json_data) {
+      for (const key in json_data) {
+        if (json_data[key]["years"].split("-")[1] != "") {
+          var diff = json_data[key]["years"].split("-")[1] - json_data[key]["years"].split("-")[0];
+        }
+        else {
+          var diff = 2023 - json_data[key]["years"].split("-")[0];
+        }
+        data.push({ "Country": key, "Value": diff.toString() })
+      }
+      console.log(data);
+      if (data.length > 0) { draw_garph(data); }
+
+    }));
+
+
+
+  </script>

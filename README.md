@@ -1,6 +1,6 @@
-# U.S. 2020 Presidential Election Results SpikeMaps
+# Zoom to bounding box
 
-https://observablehq.com/d/ade3bbdf1d789603@119
+https://observablehq.com/@d3/zoom-to-bounding-box@182
 
 View this notebook in your browser by running a web server in this folder. For
 example:
@@ -14,14 +14,14 @@ import this module directly into your application. To npm install:
 
 ~~~sh
 npm install @observablehq/runtime@5
-npm install https://api.observablehq.com/d/ade3bbdf1d789603@119.tgz?v=3
+npm install https://api.observablehq.com/d/416392da175798b4@182.tgz?v=3
 ~~~
 
 Then, import your notebook and the runtime as:
 
 ~~~js
 import {Runtime, Inspector} from "@observablehq/runtime";
-import define from "ade3bbdf1d789603";
+import define from "@d3/zoom-to-bounding-box";
 ~~~
 
 To log the value of the cell named “foo”:

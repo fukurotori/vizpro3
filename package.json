@@ -1,18 +1,14 @@
 {
-  "name": "ade3bbdf1d789603",
-  "main": "ade3bbdf1d789603@119.js",
-  "version": "119.0.0",
-  "homepage": "https://observablehq.com/d/ade3bbdf1d789603",
+  "name": "@d3/zoom-to-bounding-box",
+  "main": "416392da175798b4@182.js",
+  "version": "182.0.0",
+  "homepage": "https://observablehq.com/@d3/zoom-to-bounding-box",
   "author": {
-    "name": "Hassaan Naveed's Workspace",
-    "url": "https://observablehq.com/@hassaan-naveed-ws"
+    "name": "D3",
+    "url": "https://observablehq.com/@d3"
   },
   "type": "module",
   "peerDependencies": {
-    "@observablehq/runtime": "^5.9.4"
-  },
-  "dependencies": {
-    "d3": "^7.8.5",
-    "runtime-npm-install": "^5.0.0"
+    "@observablehq/runtime": "4 - 5"
   }
 }
